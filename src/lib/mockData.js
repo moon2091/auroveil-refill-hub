@@ -1,175 +1,175 @@
 export const initialProducts = [
   {
     id: 'prod-1',
-    sku: 'AV-FW-200',
-    title: 'Auroveil Clarifying Gel Face Wash (200ml)',
-    category: 'Skincare',
-    price: 850,
+    sku: 'IR261018001',
+    title: 'Care Plus 20% Icaridin Insect Repellent Spray 200ml',
+    category: 'Protection',
+    price: 1850,
     typicalUsageDays: 45,
-    recommendedRefill: 'Auroveil Clarifying Gel Face Wash (200ml)',
-    companionSuggestion: 'Auroveil Hydro-Boost Moisturizer (50ml)',
-    description: 'Daily gentle botanical cleanser for all skin types.'
+    recommendedRefill: 'Care Plus 20% Icaridin Insect Repellent Spray 200ml',
+    companionSuggestion: 'Life Brand DEET Free Insect Repellent II 20% Icaridin 100ml',
+    description: 'Long-lasting insect and mosquito repellent spray.'
   },
   {
     id: 'prod-2',
-    sku: 'AV-SH-350',
-    title: 'Auroveil Botanical Restoring Shampoo (350ml)',
-    category: 'Haircare',
-    price: 1200,
-    typicalUsageDays: 60,
-    recommendedRefill: 'Auroveil Botanical Restoring Shampoo (350ml)',
-    companionSuggestion: 'Auroveil Silk Repair Conditioner (250ml)',
-    description: 'Sulfate-free scalp restoration formula.'
+    sku: 'IR261021001',
+    title: 'Life Brand DEET Free Insect Repellent II 20% Icaridin 100ml',
+    category: 'Protection',
+    price: 1520,
+    typicalUsageDays: 45,
+    recommendedRefill: 'Life Brand DEET Free Insect Repellent II 20% Icaridin 100ml',
+    companionSuggestion: 'Care Plus 20% Icaridin Insect Repellent Spray 200ml',
+    description: 'Compact travel-size DEET-free repellent.'
   },
   {
     id: 'prod-3',
-    sku: 'AV-SUN-50',
-    title: 'Auroveil Invisible Sun Shield SPF 50 (50ml)',
-    category: 'Suncare',
-    price: 950,
-    typicalUsageDays: 30,
-    recommendedRefill: 'Auroveil Invisible Sun Shield SPF 50 (50ml)',
-    companionSuggestion: 'Auroveil Vitamin C Radiance Serum (30ml)',
-    description: 'Broad spectrum lightweight matte finish sunscreen.'
-  },
-  {
-    id: 'prod-4',
-    sku: 'AV-SRM-30',
-    title: 'Auroveil Niacinamide & Zinc Glow Serum (30ml)',
-    category: 'Treatments',
-    price: 1450,
+    sku: 'BL261016001',
+    title: 'Aveeno Baby Calming Comfort Lotion 227g (8 oz)',
+    category: 'Baby Care',
+    price: 2010,
     typicalUsageDays: 45,
-    recommendedRefill: 'Auroveil Niacinamide & Zinc Glow Serum (30ml)',
-    companionSuggestion: 'Auroveil Clarifying Gel Face Wash (200ml)',
-    description: 'Pore refining and barrier support treatment.'
+    recommendedRefill: 'Aveeno Baby Calming Comfort Lotion 227g (8 oz)',
+    companionSuggestion: 'Aveeno Baby Daily Moisture Wash & Shampoo (354ml)',
+    description: 'Moisturizing lavender and vanilla calming lotion.'
   }
 ];
 
 export const initialOrders = [
   {
-    id: 'ord-10291',
-    orderNumber: '#AV-10291',
-    customerName: 'Tasnim Rahman',
-    phone: '+8801711223344',
-    email: 'tasnim.rahman@gmail.com',
+    id: 'ord-av1003',
+    orderNumber: '#AV1003',
+    customerName: 'Nadim Iqbal',
+    phone: '01670110702',
+    email: '',
     city: 'Dhaka',
-    orderDate: '2026-09-14',
+    orderDate: '2026-10-29',
     items: [
-      { productTitle: 'Auroveil Clarifying Gel Face Wash (200ml)', sku: 'AV-FW-200', quantity: 1, price: 850 }
+      { productTitle: 'Care Plus 20% Icaridin Insect Repellent Spray 200ml', sku: 'IR261018001', quantity: 1, price: 1850 },
+      { productTitle: 'Life Brand DEET Free Insect Repellent II 20% Icaridin 100ml', sku: 'IR261021001', quantity: 1, price: 1520 }
     ],
-    total: 850,
-    refillDueDate: '2026-10-29',
-    reminderStatus: 'pending' // pending, approved, sent, snoozed
-  },
-  {
-    id: 'ord-10284',
-    orderNumber: '#AV-10284',
-    customerName: 'Zahid Hasan',
-    phone: '+8801819556677',
-    email: 'zahid.hasan@yahoo.com',
-    city: 'Chittagong',
-    orderDate: '2026-08-30',
-    items: [
-      { productTitle: 'Auroveil Botanical Restoring Shampoo (350ml)', sku: 'AV-SH-350', quantity: 1, price: 1200 }
-    ],
-    total: 1200,
-    refillDueDate: '2026-10-29',
+    total: 3450,
+    refillDueDate: '2026-12-13',
     reminderStatus: 'pending'
   },
   {
-    id: 'ord-10278',
-    orderNumber: '#AV-10278',
-    customerName: 'Nusrat Jahan',
-    phone: '+8801912334455',
-    email: 'nusrat.jahan@hotmail.com',
-    city: 'Sylhet',
-    orderDate: '2026-09-29',
+    id: 'ord-av1002',
+    orderNumber: '#AV1002',
+    customerName: 'Mohiyuddeen Ahmad',
+    phone: '01707963501',
+    email: 'moon.studiojunction@gmail.com',
+    city: 'Dhaka',
+    orderDate: '2026-10-29',
     items: [
-      { productTitle: 'Auroveil Invisible Sun Shield SPF 50 (50ml)', sku: 'AV-SUN-50', quantity: 1, price: 950 }
+      { productTitle: 'Care Plus 20% Icaridin Insect Repellent Spray 200ml', sku: 'IR261018001', quantity: 1, price: 1850 },
+      { productTitle: 'Life Brand DEET Free Insect Repellent II 20% Icaridin 100ml', sku: 'IR261021001', quantity: 1, price: 1520 }
     ],
-    total: 950,
-    refillDueDate: '2026-10-29',
+    total: 3450,
+    refillDueDate: '2026-12-13',
     reminderStatus: 'pending'
   },
   {
-    id: 'ord-10265',
-    orderNumber: '#AV-10265',
-    customerName: 'Mahmudul Karim',
-    phone: '+8801611778899',
-    email: 'm.karim@gmail.com',
+    id: 'ord-1001',
+    orderNumber: '#1001',
+    customerName: 'Faruk Hasan',
+    phone: '+8801833392733',
+    email: 'fhasan.net@gmail.com',
     city: 'Dhaka',
-    orderDate: '2026-09-18',
+    orderDate: '2026-10-24',
     items: [
-      { productTitle: 'Auroveil Niacinamide & Zinc Glow Serum (30ml)', sku: 'AV-SRM-30', quantity: 1, price: 1450 }
+      { productTitle: 'Aveeno Baby Calming Comfort Lotion 227g (8 oz)', sku: 'BL261016001', quantity: 1, price: 2010 }
     ],
-    total: 1450,
-    refillDueDate: '2026-11-02',
-    reminderStatus: 'upcoming'
+    total: 2090,
+    refillDueDate: '2026-12-08',
+    reminderStatus: 'pending'
   }
 ];
 
 export const initialReminders = [
   {
-    id: 'rem-1',
-    orderId: 'ord-10291',
-    orderNumber: '#AV-10291',
-    customerName: 'Tasnim Rahman',
-    phone: '+8801711223344',
-    email: 'tasnim.rahman@gmail.com',
-    productOrdered: 'Auroveil Clarifying Gel Face Wash (200ml)',
-    orderedDate: '2026-09-14',
+    id: 'rem-av1003',
+    orderId: 'ord-av1003',
+    orderNumber: '#AV1003',
+    customerName: 'Nadim Iqbal',
+    phone: '01670110702',
+    email: '',
+    productOrdered: 'Care Plus 20% Icaridin Insect Repellent Spray 200ml',
+    orderedDate: '2026-10-29',
     dueDate: '2026-10-29',
-    status: 'pending', // pending, approved, sent, snoozed
+    status: 'pending',
     couponCode: 'REFILL10',
     discountPercent: 10,
     recommendedProducts: [
-      'Auroveil Clarifying Gel Face Wash (200ml)',
-      'Auroveil Hydro-Boost Moisturizer (50ml)'
+      'Care Plus 20% Icaridin Insect Repellent Spray 200ml',
+      'Life Brand DEET Free Insect Repellent II 20% Icaridin 100ml'
     ],
-    whatsappDraft: `Assalamu Alaikum Tasnim! 🌿
+    whatsappDraft: `Assalamu Alaikum Nadim! 🌿
 
-It's been about 45 days since your order of *Auroveil Clarifying Gel Face Wash (200ml)*. 
+Checking in from Auroveil. It's time for your refill of *Care Plus 20% Icaridin Insect Repellent Spray 200ml*.
 
-We assume you might be running low and need a fresh refill to keep your daily skincare routine uninterrupted. 
+As a valued customer, enjoy an exclusive *10% OFF* on your next refill order with coupon code: *REFILL10*
 
-To say thank you for being a valued customer, enjoy an exclusive *10% OFF* on your next refill order with coupon code: *REFILL10*
+Order directly on Auroveil: https://auroveil.com/discount/REFILL10
 
-Order directly on Auroveil: https://auroveil.com/discount/REFILL10?redirect=/products/clarifying-gel-face-wash
-
-Let us know if you need any recommendations!
 Team Auroveil`,
-    emailSubject: 'Time for a fresh glow? Your Auroveil Refill is ready (+10% OFF)',
-    emailDraft: `<p>Dear Tasnim,</p><p>We hope you are enjoying your <strong>Auroveil Clarifying Gel Face Wash</strong>!</p><p>Based on regular daily usage, your bottle is estimated to be nearing empty right around now. To help you maintain consistency in your skincare routine without interruption, here is an exclusive 10% discount for your refill:</p><p style="padding:12px; background:#f6f7f6; font-size:16px; font-weight:bold; text-align:center;">Use Code: REFILL10</p><p><a href="https://auroveil.com/discount/REFILL10">Claim Refill on Auroveil</a></p><p>Warmly,<br/>Team Auroveil</p>`
+    emailSubject: 'Time for your Auroveil Refill (+10% OFF)',
+    emailDraft: `<p>Dear Nadim,</p><p>We hope you are enjoying your recent order. It's time to refill your <strong>Care Plus 20% Icaridin Insect Repellent Spray 200ml</strong>.</p><p>Use coupon code <strong>REFILL10</strong> for 10% off your replenishment order today.</p>`
   },
   {
-    id: 'rem-2',
-    orderId: 'ord-10284',
-    orderNumber: '#AV-10284',
-    customerName: 'Zahid Hasan',
-    phone: '+8801819556677',
-    email: 'zahid.hasan@yahoo.com',
-    productOrdered: 'Auroveil Botanical Restoring Shampoo (350ml)',
-    orderedDate: '2026-08-30',
+    id: 'rem-av1002',
+    orderId: 'ord-av1002',
+    orderNumber: '#AV1002',
+    customerName: 'Mohiyuddeen Ahmad',
+    phone: '01707963501',
+    email: 'moon.studiojunction@gmail.com',
+    productOrdered: 'Care Plus 20% Icaridin Insect Repellent Spray 200ml',
+    orderedDate: '2026-10-29',
     dueDate: '2026-10-29',
     status: 'pending',
-    couponCode: 'HAIRCARE15',
-    discountPercent: 15,
+    couponCode: 'REFILL10',
+    discountPercent: 10,
     recommendedProducts: [
-      'Auroveil Botanical Restoring Shampoo (350ml)',
-      'Auroveil Silk Repair Conditioner (250ml)'
+      'Care Plus 20% Icaridin Insect Repellent Spray 200ml',
+      'Life Brand DEET Free Insect Repellent II 20% Icaridin 100ml'
     ],
-    whatsappDraft: `Hello Zahid! 🌿
+    whatsappDraft: `Assalamu Alaikum Mohiyuddeen! 🌿
 
-Checking in from Auroveil. Around 60 days have passed since you purchased *Auroveil Botanical Restoring Shampoo (350ml)*. 
+Checking in from Auroveil. It's time for your refill of *Care Plus 20% Icaridin Insect Repellent Spray 200ml*.
 
-If your bottle is running low, we've prepared a special *15% OFF* coupon for your fresh refill: *HAIRCARE15*. 
+Enjoy an exclusive *10% OFF* on your replenishment order with coupon code: *REFILL10*
 
-Pairs wonderfully with our Silk Repair Conditioner!
-
-Reorder here: https://auroveil.com/discount/HAIRCARE15
+Order directly on Auroveil: https://auroveil.com/discount/REFILL10
 
 Team Auroveil`,
-    emailSubject: 'Your Haircare Refill is waiting (+15% OFF)',
-    emailDraft: `<p>Dear Zahid,</p><p>It's about time to replenish your <strong>Auroveil Botanical Restoring Shampoo</strong>. Use code <strong>HAIRCARE15</strong> for 15% off your refill order today.</p>`
+    emailSubject: 'Time for your Auroveil Refill (+10% OFF)',
+    emailDraft: `<p>Dear Mohiyuddeen,</p><p>We hope you are enjoying your order. It's time to replenish your <strong>Care Plus 20% Icaridin Insect Repellent Spray 200ml</strong>.</p><p>Use code <strong>REFILL10</strong> for 10% off your replenishment order.</p>`
+  },
+  {
+    id: 'rem-1001',
+    orderId: 'ord-1001',
+    orderNumber: '#1001',
+    customerName: 'Faruk Hasan',
+    phone: '+8801833392733',
+    email: 'fhasan.net@gmail.com',
+    productOrdered: 'Aveeno Baby Calming Comfort Lotion 227g (8 oz)',
+    orderedDate: '2026-10-24',
+    dueDate: '2026-10-29',
+    status: 'pending',
+    couponCode: 'BABYCARE10',
+    discountPercent: 10,
+    recommendedProducts: [
+      'Aveeno Baby Calming Comfort Lotion 227g (8 oz)',
+      'Care Plus 20% Icaridin Insect Repellent Spray 200ml'
+    ],
+    whatsappDraft: `Assalamu Alaikum Faruk! 🌿
+
+Checking in from Auroveil. It's time for your refill of *Aveeno Baby Calming Comfort Lotion 227g*.
+
+Enjoy *10% OFF* on your next order with coupon code: *BABYCARE10*
+
+Order directly on Auroveil: https://auroveil.com/discount/BABYCARE10
+
+Team Auroveil`,
+    emailSubject: 'Your Aveeno Baby Care Refill is waiting (+10% OFF)',
+    emailDraft: `<p>Dear Faruk,</p><p>It's about time to replenish your <strong>Aveeno Baby Calming Comfort Lotion</strong>.</p><p>Use code <strong>BABYCARE10</strong> for 10% off your replenishment order today.</p>`
   }
 ];

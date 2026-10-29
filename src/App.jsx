@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -38,9 +38,44 @@ function DashboardLayout({ children, onOpenImport, pendingCount }) {
 
 export default function App() {
   const [products, setProducts] = useState(initialProducts);
-  const [orders, setOrders] = useState(initialOrders);
-  const [reminders, setReminders] = useState(initialReminders);
+
+  const [orders, setOrders] = useState(() => {
+    try {
+      const saved = localStorage.getItem('auroveil_real_orders_v2');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.warn(e);
+    }
+    return initialOrders;
+  });
+
+  const [reminders, setReminders] = useState(() => {
+    try {
+      const saved = localStorage.getItem('auroveil_real_reminders_v2');
+      if (saved) return JSON.parse(saved);
+    } catch (e) {
+      console.warn(e);
+    }
+    return initialReminders;
+  });
+
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('auroveil_real_orders_v2', JSON.stringify(orders));
+    } catch (e) {
+      console.warn(e);
+    }
+  }, [orders]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('auroveil_real_reminders_v2', JSON.stringify(reminders));
+    } catch (e) {
+      console.warn(e);
+    }
+  }, [reminders]);
 
   // Approve action (human-in-the-loop)
   const handleApprove = (reminderId, details) => {
@@ -80,10 +115,10 @@ export default function App() {
       couponCode: 'REFILL10',
       discountPercent: 10,
       recommendedProducts: [
-        ord.items[0]?.productTitle || 'Auroveil Face Wash',
-        'Auroveil Hydro-Boost Moisturizer (50ml)'
+        ord.items[0]?.productTitle || 'Auroveil Care Product',
+        ord.items[1]?.productTitle || 'Auroveil Protection Product'
       ],
-      whatsappDraft: `Assalamu Alaikum ${ord.customerName}! 🌿\n\nChecking in from Auroveil. It's time for your refill of ${ord.items[0]?.productTitle || 'your favorite product'}.\n\nUse code REFILL10 for 10% OFF your replenishment order: https://auroveil.com/discount/REFILL10\n\nTeam Auroveil`,
+      whatsappDraft: `Assalamu Alaikum ${ord.customerName}! 🌿\n\nChecking in from Auroveil. It's time for your refill of ${ord.items[0]?.productTitle || 'your recent order'}.\n\nUse code REFILL10 for 10% OFF your replenishment order: https://auroveil.com/discount/REFILL10\n\nTeam Auroveil`,
       emailSubject: `Time for your Auroveil Refill (+10% OFF)`,
       emailDraft: `<p>Dear ${ord.customerName},</p><p>We hope you are enjoying your Auroveil order! Here is a 10% discount on your next refill: <strong>REFILL10</strong>.</p>`
     }));
