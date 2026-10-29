@@ -51,7 +51,7 @@ export default function ReminderCard({ reminder, onApprove, onSnooze }) {
     try {
       const response = await sendGreenApiMessage(reminder.phone, whatsappText);
       setGreenApiStatus('success');
-      setStatusMessage(`Message delivered via Green-API! (ID: ${response.idMessage || 'OK'})`);
+      setStatusMessage(`Message sent to test WhatsApp (8801816480712)! [Target Customer: ${reminder.customerName} (${reminder.phone})] (ID: ${response.idMessage || 'OK'})`);
       
       onApprove(reminder.id, {
         whatsappText,
