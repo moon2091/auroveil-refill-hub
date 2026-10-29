@@ -7,8 +7,25 @@ import RemindersQueue from './pages/RemindersQueue';
 import OrdersList from './pages/OrdersList';
 import ProductRules from './pages/ProductRules';
 import Settings from './pages/Settings';
+import Login from './pages/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 import CsvUploaderModal from './components/CsvUploaderModal';
+import { AuthProvider } from './context/AuthContext';
 import { initialProducts, initialOrders, initialReminders } from './lib/mockData';
+
+function DashboardLayout({ children, onOpenImport, pendingCount }) {
+  return (
+    <div className="flex h-screen bg-slate-50 overflow-hidden">
+      <Sidebar onOpenImport={onOpenImport} />
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <Header pendingCount={pendingCount} />
+        <main className="flex-1 overflow-y-auto p-8 max-w-7xl w-full mx-auto">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
+}
 
 export default function App() {
   const [products, setProducts] = useState(initialProducts);
@@ -40,7 +57,6 @@ export default function App() {
   const handleImportSuccess = (newOrders) => {
     setOrders((prev) => [...newOrders, ...prev]);
 
-    // Automatically generate pending reminders for the imported orders
     const newReminders = newOrders.map((ord, idx) => ({
       id: `rem-gen-${Date.now()}-${idx}`,
       orderId: ord.id,
@@ -69,70 +85,78 @@ export default function App() {
   const pendingCount = reminders.filter((r) => r.status === 'pending').length;
 
   return (
-    <BrowserRouter>
-      <div className="flex h-screen bg-slate-50 overflow-hidden">
-        {/* Left Navigation Sidebar */}
-        <Sidebar onOpenImport={() => setIsImportModalOpen(true)} />
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Public Login Route */}
+          <Route path="/login" element={<Login />} />
 
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-          <Header pendingCount={pendingCount} />
+          {/* Protected Team Dashboard Routes */}
+          <Route
+            path="/*"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout
+                  onOpenImport={() => setIsImportModalOpen(true)}
+                  pendingCount={pendingCount}
+                >
+                  <Routes>
+                    <Route
+                      path="/"
+                      element={
+                        <Dashboard
+                          reminders={reminders}
+                          orders={orders}
+                          onApprove={handleApprove}
+                          onSnooze={handleSnooze}
+                          onOpenImport={() => setIsImportModalOpen(true)}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/reminders"
+                      element={
+                        <RemindersQueue
+                          reminders={reminders}
+                          onApprove={handleApprove}
+                          onSnooze={handleSnooze}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/orders"
+                      element={
+                        <OrdersList
+                          orders={orders}
+                          onOpenImport={() => setIsImportModalOpen(true)}
+                        />
+                      }
+                    />
+                    <Route
+                      path="/products"
+                      element={
+                        <ProductRules
+                          products={products}
+                          onUpdateProducts={setProducts}
+                        />
+                      }
+                    />
+                    <Route path="/settings" element={<Settings />} />
+                  </Routes>
+                </DashboardLayout>
 
-          <main className="flex-1 overflow-y-auto p-8 max-w-7xl w-full mx-auto">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Dashboard
-                    reminders={reminders}
-                    orders={orders}
-                    onApprove={handleApprove}
-                    onSnooze={handleSnooze}
-                    onOpenImport={() => setIsImportModalOpen(true)}
-                  />
-                }
-              />
-              <Route
-                path="/reminders"
-                element={
-                  <RemindersQueue
-                    reminders={reminders}
-                    onApprove={handleApprove}
-                    onSnooze={handleSnooze}
-                  />
-                }
-              />
-              <Route
-                path="/orders"
-                element={
-                  <OrdersList
-                    orders={orders}
-                    onOpenImport={() => setIsImportModalOpen(true)}
-                  />
-                }
-              />
-              <Route
-                path="/products"
-                element={
-                  <ProductRules
-                    products={products}
-                    onUpdateProducts={setProducts}
-                  />
-                }
-              />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </main>
-        </div>
-
-        {/* CSV Uploader Modal */}
-        <CsvUploaderModal
-          isOpen={isImportModalOpen}
-          onClose={() => setIsImportModalOpen(false)}
-          onImportSuccess={handleImportSuccess}
-          productsCatalog={products}
-        />
-      </div>
-    </BrowserRouter>
+                {/* CSV Uploader Modal */}
+                <CsvUploaderModal
+                  isOpen={isImportModalOpen}
+                  onClose={() => setIsImportModalOpen(false)}
+                  onImportSuccess={handleImportSuccess}
+                  productsCatalog={products}
+                />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
