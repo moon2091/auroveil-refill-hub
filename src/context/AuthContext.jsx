@@ -3,12 +3,27 @@ import { supabase, isConfigured } from '../lib/supabaseClient';
 
 const AuthContext = createContext(null);
 
+// Authorized team accounts
+const VALID_CREDENTIALS = [
+  {
+    email: 'auroveilshop@gmail.com',
+    password: '12345678',
+    name: 'Auroveil Admin',
+    role: 'Store Owner',
+  },
+  {
+    email: 'team@auroveil.com',
+    password: 'auroveil2026',
+    name: 'Auroveil Team',
+    role: 'Store Manager',
+  },
+];
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check local storage for persistent mock session or active Supabase session
     if (isConfigured && supabase) {
       supabase.auth.getSession().then(({ data: { session } }) => {
         setUser(session?.user ?? null);
@@ -22,7 +37,6 @@ export function AuthProvider({ children }) {
 
       return () => subscription.unsubscribe();
     } else {
-      // Local fallback mode: check localStorage for team login
       const stored = localStorage.getItem('auroveil_team_user');
       if (stored) {
         try {
@@ -36,27 +50,35 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
+    const trimmedEmail = email.trim().toLowerCase();
+
     if (isConfigured && supabase) {
       const { data, error } = await supabase.auth.signInWithPassword({
-        email,
+        email: trimmedEmail,
         password,
       });
       if (error) throw error;
       return data;
     } else {
-      // Built-in team credential check for immediate local/staging use
-      if (!email.includes('@') || password.length < 6) {
-        throw new Error('Please enter a valid email and a password of at least 6 characters.');
+      // Validate against authorized team credentials
+      const matched = VALID_CREDENTIALS.find(
+        (acc) => acc.email.toLowerCase() === trimmedEmail && acc.password === password
+      );
+
+      if (!matched) {
+        throw new Error('Invalid email or password. Please use your authorized Auroveil account.');
       }
-      const mockUser = {
-        id: 'team-user-1',
-        email,
-        name: email.split('@')[0],
-        role: 'Store Manager',
+
+      const authenticatedUser = {
+        id: `user-${Date.now()}`,
+        email: matched.email,
+        name: matched.name,
+        role: matched.role,
       };
-      localStorage.setItem('auroveil_team_user', JSON.stringify(mockUser));
-      setUser(mockUser);
-      return { user: mockUser };
+
+      localStorage.setItem('auroveil_team_user', JSON.stringify(authenticatedUser));
+      setUser(authenticatedUser);
+      return { user: authenticatedUser };
     }
   };
 

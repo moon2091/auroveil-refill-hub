@@ -14,12 +14,21 @@ import { AuthProvider } from './context/AuthContext';
 import { initialProducts, initialOrders, initialReminders } from './lib/mockData';
 
 function DashboardLayout({ children, onOpenImport, pendingCount }) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <div className="flex h-screen bg-slate-50 overflow-hidden">
-      <Sidebar onOpenImport={onOpenImport} />
+      <Sidebar
+        onOpenImport={onOpenImport}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        <Header pendingCount={pendingCount} />
-        <main className="flex-1 overflow-y-auto p-8 max-w-7xl w-full mx-auto">
+        <Header
+          pendingCount={pendingCount}
+          onOpenSidebar={() => setIsSidebarOpen(true)}
+        />
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
           {children}
         </main>
       </div>
