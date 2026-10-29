@@ -7,10 +7,14 @@ dist/
 build/
 out/
 
-# Environment variables
+# Environment variables & secrets
 .env
 .env.local
 .env.*.local
+credentials.json
+client_secret*.json
+token.json
+*.pem
 
 # Logs & OS files
 *.log
