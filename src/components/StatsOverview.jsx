@@ -16,7 +16,7 @@ export default function StatsOverview({ pendingCount = 3, sentCount = 28, revenu
       label: 'Dispatched Reminders',
       value: sentCount,
       subtext: 'Sent via WhatsApp & Email',
-      icon: SendCheck,
+      icon: Send,
       color: 'bg-emerald-600 text-white',
       badge: 'This Month',
       badgeColor: 'bg-emerald-100 text-emerald-800'
